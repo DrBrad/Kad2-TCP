@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JKademlia:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JKademlia_jar</output-path>
+    <root id="archive" name="JKademlia.jar">
+      <element id="module-output" name="JKademlia" />
+    </root>
+  </artifact>
+</component>
