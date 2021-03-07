@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
 public class KademliaNode {
 
     public static int THREAD_POOL_SIZE = 3;
-    public static long BUCKET_REFRESH_TIME = 86400000;
+    public static long BUCKET_REFRESH_TIME = 3600000;
     private int port;
     private RoutingTable routingTable;
     private Storage storage;
