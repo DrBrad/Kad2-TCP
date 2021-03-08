@@ -2,8 +2,7 @@ package unet.uncentralized.jkademlia.HashTable;
 
 import unet.uncentralized.jkademlia.Node.KID;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Storage {
 
@@ -53,23 +52,26 @@ public class Storage {
     */
 
     public synchronized void evict(){
+        long now = new Date().getTime();
+
         for(String k : storage.keySet()){
-            if(storage.get(k).getTime()-86400000000l > 0){
+            if(storage.get(k).getTime() < now){
                 storage.remove(k);
             }
         }
     }
 
-    public synchronized Map<String, LocalStore> getRenewal(){
+    public synchronized List<String> getRenewal(){
+        ArrayList<String> ls = new ArrayList<>();
         if(localStorage.isEmpty()){
-            return localStorage;
+            return ls;
         }
 
-        HashMap<String, LocalStore> ls = new HashMap<>();
+        long now = new Date().getTime();
 
         for(String k : localStorage.keySet()){
-            if(localStorage.get(k).getTime()-86400000000l > 0){
-                ls.put(k, localStorage.get(k));
+            if(localStorage.get(k).getTime() < now){
+                ls.add(localStorage.get(k).getData());
             }
         }
 

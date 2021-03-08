@@ -60,8 +60,6 @@ public class StoreMessage implements Message {
         }else{
             System.out.println("FAILED TO SAVE");
         }
-
-
     }
 
     private void connect(Node n){

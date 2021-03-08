@@ -1,23 +1,16 @@
 package unet.uncentralized.jkademlia.HashTable;
 
-import unet.uncentralized.jkademlia.Node.KID;
+import java.util.Date;
 
 public class Store {
 
     private long time;
-    //private KID kid;
     private String data;
 
     public Store(String data){
         this.data = data;
-        time = System.currentTimeMillis()/1000l;
+        time = new Date().getTime()+86400000;
     }
-
-    /*
-    public KID getKID(){
-        return kid;
-    }
-    */
 
     public String getData(){
         return data;
@@ -28,6 +21,6 @@ public class Store {
     }
 
     public void setTimeNow(){
-        time = System.currentTimeMillis()/1000l;
+        time = new Date().getTime()+86400000;
     }
 }

@@ -1,5 +1,7 @@
 package unet.uncentralized.jkademlia.HashTable;
 
+import java.util.Date;
+
 public class LocalStore {
 
     private long time;
@@ -7,7 +9,7 @@ public class LocalStore {
 
     public LocalStore(String data){
         this.data = data;
-        time = System.currentTimeMillis()/1000l;
+        time = new Date().getTime()+86400000;
     }
 
     public String getData(){
@@ -19,6 +21,6 @@ public class LocalStore {
     }
 
     public void setTimeNow(){
-        time = System.currentTimeMillis()/1000l;
+        time = new Date().getTime()+86400000;
     }
 }

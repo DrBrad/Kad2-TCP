@@ -86,6 +86,24 @@ public class KademliaNode {
                             }
                         }
                     });
+
+                    storage.evict();
+
+                    final List<String> data = storage.getRenewal();
+                    if(!data.isEmpty()){
+                        for(final String r : data){
+                            exe.submit(new Runnable(){
+                                @Override
+                                public void run(){
+                                    try{
+                                        new StoreMessage(KademliaNode.this, r).execute();
+                                    }catch(NoSuchAlgorithmException e){
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+                    }
                 }
             };
 
@@ -155,16 +173,6 @@ public class KademliaNode {
         for(Node n : nodes){
             builder += "   |   "+routingTable.getBucketId(n.getKID())+" : "+n.getPort();
         }
-
-        /*
-        builder += "           ";
-
-        for(Node n : nodes){
-            if(builder.split("\\| "+n.getPort()).length > 2){
-                builder += " | M "+n.getPort();
-            }
-        }
-        */
 
         return routingTable.getLocal().getPort()+"   "+builder;
     }

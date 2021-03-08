@@ -2,6 +2,8 @@ package unet.uncentralized.jkademlia.Routing;
 
 import unet.uncentralized.jkademlia.Node.Node;
 
+import java.util.Date;
+
 public class Contact/* implements Comparable<Contact>*/ {
 
     private Node n;
@@ -10,7 +12,7 @@ public class Contact/* implements Comparable<Contact>*/ {
 
     public Contact(Node n){
         this.n = n;
-        t = System.currentTimeMillis()/1000l;
+        t = new Date().getTime();
     }
 
     public Node getNode(){
@@ -18,7 +20,7 @@ public class Contact/* implements Comparable<Contact>*/ {
     }
 
     public void setSeenNow(){
-        this.t = System.currentTimeMillis()/1000l;
+        this.t = new Date().getTime();
     }
 
     public long getLastSeen(){
@@ -37,8 +39,8 @@ public class Contact/* implements Comparable<Contact>*/ {
         return s;
     }
 
-    public boolean isQueried(){
-        if(t-3600000000l < 0){
+    public boolean isQueried(long now){
+        if(t+3600000 < now){
             return true;
         }
 

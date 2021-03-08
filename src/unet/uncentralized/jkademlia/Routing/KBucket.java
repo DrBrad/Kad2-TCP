@@ -3,6 +3,7 @@ package unet.uncentralized.jkademlia.Routing;
 import unet.uncentralized.jkademlia.Node.Node;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class KBucket {
@@ -103,9 +104,10 @@ public class KBucket {
 
     public synchronized List<Contact> getUnQueriedNodes(){
         ArrayList<Contact> q = new ArrayList<>();
+        long now = new Date().getTime();
 
         for(Contact c : contacts){
-            if(!c.isQueried()){
+            if(!c.isQueried(now)){
                 q.add(c);
             }
         }
