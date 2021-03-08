@@ -18,6 +18,7 @@ Usage
 Here is an example for the routing and creation of a couple DHT nodes. (https://github.com/DrBrad/JKademlia/blob/main/src/unet/uncentralized/jkademlia/Samples/Test.java)
 
 **Configuration**
+-----
 Download (https://github.com/DrBrad/JKademlia/blob/main/out/artifacts/JKademlia_jar/JKademlia.jar) and include the library to your project.
 
 **Creating a node**
