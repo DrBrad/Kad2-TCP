@@ -12,6 +12,7 @@ Features
 - [x] FIND VALUE
 - [x] STORE
 - [ ] HANDOVERS - Not in paper but might be a nice thing to add.
+- [X] External IP resolution over fallback nodes, websites and UPnP
 
 Usage
 -----
@@ -24,26 +25,28 @@ Download (https://github.com/DrBrad/JKademlia/blob/main/out/artifacts/JKademlia_
 **Creating a node**
 ```Java
 int port = 8080;
-KademliaNode knode = new KademliaNode(port);
+boolean local = true;
+KademliaNode knode = new KademliaNode(port, local);
 ```
 
 **Joining / Bootstrap to node**
 ```Java
 int port = 8070;
 int toPort = 8080;
-KademliaNode knode = new KademliaNode(port);
+boolean local = true;
+KademliaNode knode = new KademliaNode(port, local);
 knode.join(InetAddress.getLocalHost(), toPort);
 ```
 
 **Storing data on DHT**
 ```Java
-KademliaNode knode = new KademliaNode(port);
+KademliaNode knode = new KademliaNode(port, local);
 knode.store("STRING DATA");
 ```
 
 **Getting data on DHT**
 ```Java
-KademliaNode knode = new KademliaNode(port);
+KademliaNode knode = new KademliaNode(port, local);
 knode.get(new KID("STRING DATA"));
 ```
 
