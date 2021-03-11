@@ -1,5 +1,6 @@
 package unet.uncentralized.jkademlia.KademliaNode;
 
+import org.xml.sax.SAXException;
 import unet.uncentralized.jkademlia.HashTable.Storage;
 import unet.uncentralized.jkademlia.Message.*;
 import unet.uncentralized.jkademlia.Node.KID;
@@ -9,10 +10,11 @@ import unet.uncentralized.jkademlia.Routing.KBucket;
 import unet.uncentralized.jkademlia.Routing.RoutingTable;
 import unet.uncentralized.jkademlia.Socket.KServerSocket;
 import unet.uncentralized.jkademlia.Socket.KSocket;
+import unet.uncentralized.jkademlia.Socket.UPnP.UPnP;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static unet.uncentralized.jkademlia.Socket.FallbackResolver.*;
 
 public class KademliaNode {
 
@@ -34,9 +38,29 @@ public class KademliaNode {
     private Timer refreshTimer;
     private TimerTask refreshTimerTask;
 
-    public KademliaNode(int port)throws UnknownHostException, NoSuchAlgorithmException {
+    public KademliaNode(int port, boolean local)throws Exception {
         this.port = port;
-        routingTable = new RoutingTable(new Node(InetAddress.getLocalHost(), port));
+
+        if(local){
+            routingTable = new RoutingTable(new Node(getLocalIP(), port));
+
+        }else{ //EXTERNAL IP RESOLUTION
+            if(!UPnP.isUPnPAvailable()){
+                routingTable = new RoutingTable(new Node(UPnP.getExternalIP(), port));
+
+                if(!UPnP.isMappedTCP(port)){
+                    UPnP.openPortTCP(port);
+                }
+
+            }else{
+                try{
+                    routingTable = new RoutingTable(new Node(getExternalIP(), port));
+                }catch(IOException | ParserConfigurationException | SAXException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+
         storage = new Storage();
         exe = Executors.newFixedThreadPool(THREAD_POOL_SIZE); //SHOULD BE AROUND 3 ASYNC TASKS AS PAPER STATES
         bind();

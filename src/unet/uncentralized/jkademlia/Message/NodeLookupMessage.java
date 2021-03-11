@@ -9,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ConnectException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class NodeLookupMessage implements Message {
                 for(int j = 0; j < t; j++){
                     Node m = new Node(in);
                     if(!m.equals(r.getLocal())){
-                        nr.addNode(/*new Node(in)*/m);
+                        nr.addNode(m);
                     }
                 }
             }
@@ -95,7 +96,7 @@ public class NodeLookupMessage implements Message {
 
         }catch(ConnectException e){
             r.remove(n);
-        }catch(IOException e){
+        }catch(IOException | NoSuchAlgorithmException e){
             //e.printStackTrace();
         }finally{
             if(socket != null){

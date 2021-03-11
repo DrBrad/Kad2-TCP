@@ -32,7 +32,7 @@ public class Node {
         kid = new KID(address, port);
     }
 
-    public Node(DataInputStream in)throws IOException {
+    public Node(DataInputStream in)throws IOException, NoSuchAlgorithmException {
         fromStream(in);
     }
 
@@ -48,8 +48,9 @@ public class Node {
         return port;
     }
 
+    //TO ENSURE NO NODES GIVE FAKE IDS WE WILL VERIFY THEM GENERATE THEM OURSELVES
     public void toStream(DataOutputStream out)throws IOException {
-        out.write(kid.getBytes());
+        //out.write(kid.getBytes());
 
         if(address instanceof Inet4Address){
             out.writeByte(0x04);
@@ -62,9 +63,10 @@ public class Node {
         out.writeInt(port);
     }
 
-    public void fromStream(DataInputStream in)throws IOException {
-        byte[] bid = new byte[KID.ID_LENGTH/8];
-        in.read(bid);
+    //TO ENSURE NO NODES GIVE FAKE IDS WE WILL VERIFY THEM GENERATE THEM OURSELVES
+    public void fromStream(DataInputStream in)throws IOException, NoSuchAlgorithmException {
+        //byte[] bid = new byte[KID.ID_LENGTH/8];
+        //in.read(bid);
 
         byte[] buffer = null;
 
@@ -80,9 +82,10 @@ public class Node {
 
         in.read(buffer);
 
-        kid = new KID(bid);
+        //kid = new KID(bid);
         address = InetAddress.getByAddress(buffer);
         port = in.readInt();
+        kid = new KID(address, port);
     }
 
     public int hashCode(){

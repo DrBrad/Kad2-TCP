@@ -7,15 +7,15 @@ public class Test {
     public static void main(String[] args){
         try{
             //CREATE THE INITIAL NODE
-            KademliaNode s = new KademliaNode(8080);
+            KademliaNode s = new KademliaNode(8080, true);
 
             Thread.sleep(1000); //WE NEED TO DELAY TO LET THE INITIAL NODE START
 
             //NOW WE CREATE THE SECOND NODE AND ALLOW MAKE IT JOIN/BOOTSTRAP TO THE SECOND NODE
-            KademliaNode a = new KademliaNode(8070);
+            KademliaNode a = new KademliaNode(8070, true);
             a.join(s.getRoutingTable().getLocal());
 
-            KademliaNode b = new KademliaNode(8060);
+            KademliaNode b = new KademliaNode(8060, true);
             b.join(s.getRoutingTable().getLocal());
 
             //SLEEP AGAIN TO ENSURE ALL NODES ARE CONNECTED
