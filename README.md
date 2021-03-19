@@ -1,7 +1,7 @@
 JKademlia
 ========
 
-This is an implementation of Kademlia DHT (http://en.wikipedia.org/wiki/Kademlia) this implementation was refrenced from (https://codethechange.stanford.edu/guides/guide_kademlia.html)
+This is an implementation of Kademlia DHT [Wikipedia Link](http://en.wikipedia.org/wiki/Kademlia) this implementation was refrenced from [Standord Paper](https://codethechange.stanford.edu/guides/guide_kademlia.html)
 
 Note: This repository is an IntelliJ project.
 
@@ -16,11 +16,11 @@ Features
 
 Usage
 -----
-Here is an example for the routing and creation of a couple DHT nodes. (https://github.com/DrBrad/JKademlia/blob/main/src/unet/uncentralized/jkademlia/Samples/Test.java)
+Here is an example for the routing and creation of a couple DHT nodes. [Example](https://github.com/DrBrad/JKademlia/blob/main/src/unet/uncentralized/jkademlia/Samples/Test.java)
 
 **Configuration**
 -----
-Download (https://github.com/DrBrad/JKademlia/blob/main/out/artifacts/JKademlia_jar/JKademlia.jar) and include the library to your project.
+Download [Jar Library Download](https://github.com/DrBrad/JKademlia/blob/main/out/artifacts/JKademlia_jar/JKademlia.jar) and include the library to your project.
 
 **Creating a node**
 ```Java
