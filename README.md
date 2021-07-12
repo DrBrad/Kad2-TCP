@@ -1,7 +1,7 @@
 JKademlia
 ========
 
-This is an implementation of Kademlia DHT [Wikipedia Link](http://en.wikipedia.org/wiki/Kademlia) this implementation was refrenced from [Standord Paper](https://codethechange.stanford.edu/guides/guide_kademlia.html)
+This is an implementation of Kademlia DHT [Wikipedia Link](http://en.wikipedia.org/wiki/Kademlia) this implementation was refrenced from [Stanford Paper](https://codethechange.stanford.edu/guides/guide_kademlia.html)
 
 Note: This repository is an IntelliJ project.
 
