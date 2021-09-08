@@ -11,7 +11,6 @@ Features
 - [x] FIND NODE
 - [x] FIND VALUE
 - [x] STORE
-- [ ] HANDOVERS - Not in paper but might be a nice thing to add.
 - [X] External IP resolution over fallback nodes, websites and UPnP
 
 Usage
