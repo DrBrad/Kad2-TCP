@@ -5,6 +5,10 @@ This is an implementation of Kademlia DHT [Wikipedia Link](http://en.wikipedia.o
 
 Note: This repository is an IntelliJ project.
 
+This project is depricated Moving project to:
+========
+[Kad3](https://github.com/DrBrad/Kad3)
+
 Features
 -----
 - [x] PING
